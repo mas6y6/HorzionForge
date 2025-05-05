@@ -1,0 +1,10 @@
+{
+    "bigshot": {
+      "sounds": [
+        {
+          "name": "horzion:music/bigshot",
+          "stream": true
+        }
+      ]
+    }
+  }
