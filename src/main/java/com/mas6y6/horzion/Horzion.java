@@ -3,6 +3,7 @@ package com.mas6y6.horzion;
 import com.mojang.logging.LogUtils;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTab;
@@ -21,6 +22,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.material.MapColor;
 import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.client.event.sound.SoundEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
 import net.minecraftforge.event.server.ServerStartingEvent;
@@ -40,7 +42,6 @@ import com.mas6y6.horzion.items.Excalibur;
 import com.mas6y6.horzion.tools.AiriumToolMaterial;
 import com.mas6y6.horzion.tools.HorzionToolMaterial;
 import com.mas6y6.horzion.items.AiriumSword;
-import com.mas6y6.horzion.sounds.ModSounds;
 
 @Mod(Horzion.MODID)
 public class Horzion {
@@ -90,11 +91,11 @@ public class Horzion {
     );
 
     public static final RegistryObject<Item> AIRIUM_PICKAXE = ITEMS.register("airium_pickaxe", 
-        () -> new PickaxeItem(AiriumToolMaterial, 1, -2.8f, new Item.Properties())
+        () -> new PickaxeItem(AiriumToolMaterial.INSTANCE, 1, -2.8f, new Item.Properties())
     );
 
     public static final RegistryObject<Item> AIRIUM_AXE = ITEMS.register("airium_axe", 
-        () -> new AxeItem(AiriumToolMaterial, 5.0f, -3.0f, new Item.Properties())
+        () -> new AxeItem(AiriumToolMaterial.INSTANCE, 5.0f, -3.0f, new Item.Properties())
     );
 
     public static final RegistryObject<Item> AIRIUM_SWORD = ITEMS.register("airium_sword", 
@@ -106,23 +107,24 @@ public class Horzion {
     );
 
     public static final RegistryObject<Item> AIRIUM_HOE = ITEMS.register("airium_hoe", 
-        () -> new HoeItem(AiriumToolMaterial, -2, 0.0f, new Item.Properties())
+        () -> new HoeItem(AiriumToolMaterial.INSTANCE, -2, 0.0f, new Item.Properties())
     );
 
     public static final RegistryObject<Item> AIRIUM_SHOVEL = ITEMS.register("airium_shovel", 
-        () -> new ShovelItem(AiriumToolMaterial, 1.5f, -3.0f, new Item.Properties())
+        () -> new ShovelItem(AiriumToolMaterial.INSTANCE, 1.5f, -3.0f, new Item.Properties())
     );
 
-    public static final RegistryObject<Item> SPAMDISC = ITEMS.register("spamdisc", 
-        () -> new RecordItem(15, ModSounds.SPAMTRACK.getHolder().get(), 
-            new Item.Properties().stacksTo(1).rarity(Rarity.RARE), 2840)
-    );
-
-    public void init(FMLJavaModLoadingContext context) {
+    public Horzion(FMLJavaModLoadingContext context) {
         IEventBus modEventBus = context.getModEventBus();
-
+    
         BLOCKS.register(modEventBus);
         ITEMS.register(modEventBus);
         CREATIVE_MODE_TABS.register(modEventBus);
+    
+        modEventBus.addListener(this::onCommonSetup);
+    }
+    
+    private void onCommonSetup(FMLCommonSetupEvent event) {
+        LOGGER.info("Skys high. High and above");
     }
 } 

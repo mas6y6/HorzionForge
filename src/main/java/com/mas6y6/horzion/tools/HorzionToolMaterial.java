@@ -3,7 +3,11 @@ package com.mas6y6.horzion.tools;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.crafting.Ingredient;
 
-public class HorzionToolMaterial implements Tier {
+import com.mas6y6.horzion.Horzion;
+
+public enum HorzionToolMaterial implements Tier {
+    INSTANCE;
+
     @Override
     public int getLevel() {
         return 3;

@@ -3,8 +3,12 @@ package com.mas6y6.horzion.tools;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.crafting.Ingredient;
 
+import com.mas6y6.horzion.Horzion;
 
-public class AiriumToolMaterial implements Tier {
+
+public enum AiriumToolMaterial implements Tier {
+    INSTANCE;
+
     @Override
     public int getLevel() {
         return 3;
