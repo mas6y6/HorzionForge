@@ -3,7 +3,7 @@ package com.mas6y6.horzion.tools;
 import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.crafting.Ingredient;
 
-import com.mas6y6.horzion.Horzion;
+import com.mas6y6.horzion.items.ModItems;
 
 public enum HorzionToolMaterial implements Tier {
     INSTANCE;
@@ -35,6 +35,6 @@ public enum HorzionToolMaterial implements Tier {
 
     @Override
     public Ingredient getRepairIngredient() {
-        return Ingredient.of(Horzion.RAW_HORZION.get());
+        return Ingredient.of(ModItems.RAW_HORZION.get());
     }
 }

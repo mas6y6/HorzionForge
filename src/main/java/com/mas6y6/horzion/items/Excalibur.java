@@ -1,5 +1,7 @@
 package com.mas6y6.horzion.items;
 
+import javax.annotation.Nonnull;
+
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.SwordItem;
@@ -12,7 +14,7 @@ public class Excalibur extends SwordItem {
     }
 
     @Override
-    public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity attacker) {
+    public boolean hurtEnemy(@Nonnull ItemStack stack, @Nonnull LivingEntity target, @Nonnull LivingEntity attacker) {
         target.kill();
         return super.hurtEnemy(stack, target, attacker);
     }
